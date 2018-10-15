@@ -1,0 +1,317 @@
+<OfficeApp xmlns="http://schemas.microsoft.com/office/appforoffice/1.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:bt="http://schemas.microsoft.com/office/officeappbasictypes/1.0" xmlns:mailappor="http://schemas.microsoft.com/office/mailappversionoverrides"
+    xsi:type="MailApp">
+    <Id>FFEEDDCC-BBAA-9988-7766-554433221100</Id>
+    <Version>1.0</Version>
+    <ProviderName>Tutorial</ProviderName>
+    <DefaultLocale>en-US</DefaultLocale>
+    <DisplayName DefaultValue="Outlook tutorial" />
+    <Description DefaultValue="Tutorial for all the Outlook APIs" />
+    <IconUrl DefaultValue="https://sureshgowthams.github.io/outlook-web-addin/icon80.png" />
+    <HighResolutionIconUrl DefaultValue="https://sureshgowthams.github.io/outlook-web-addin/icon.png" />
+    <SupportUrl DefaultValue="https://sureshgowthams.github.io/outlook-web-addin/" />
+    <Hosts>
+        <Host Name="Mailbox" />
+    </Hosts>
+    <Requirements>
+        <Sets DefaultMinVersion="1.1">
+            <Set Name="Mailbox" />
+        </Sets>
+    </Requirements>
+    <FormSettings>
+        <Form xsi:type="ItemEdit">
+            <DesktopSettings>
+                <SourceLocation DefaultValue="https://sureshgowthams.github.io/outlook-web-addin/index.html" />
+            </DesktopSettings>
+        </Form>
+        <Form xsi:type="ItemRead">
+            <DesktopSettings>
+                <SourceLocation DefaultValue="https://sureshgowthams.github.io/outlook-web-addin/index.html" />
+                <RequestedHeight>350</RequestedHeight>
+            </DesktopSettings>
+        </Form>
+    </FormSettings>
+    <Permissions>ReadWriteMailbox</Permissions>
+    <Rule xsi:type="RuleCollection" Mode="Or">
+        <Rule xsi:type="ItemIs" ItemType="Message" FormType="ReadOrEdit" />
+        <Rule xsi:type="ItemIs" ItemType="Appointment" FormType="ReadOrEdit" />
+    </Rule>
+    <VersionOverrides xmlns="http://schemas.microsoft.com/office/mailappversionoverrides" xsi:type="VersionOverridesV1_0">
+        <Description resid="AppDescription" />
+        <Requirements>
+            <bt:Sets DefaultMinVersion="1.3">
+                <bt:Set Name="Mailbox" />
+            </bt:Sets>
+        </Requirements>
+        <Hosts>
+            <Host xsi:type="MailHost">
+                <DesktopFormFactor>
+                    <ExtensionPoint xsi:type="MessageReadCommandSurface">
+                        <OfficeTab id="TabDefault">
+                            <Group id="GroupReadMailTab">
+                                <Label resid="ReadGroupLabel" />
+                                <Tooltip resid="ReadGroupTooltip" />
+                                <Control xsi:type="Button" id="TaskPaneButtonRead">
+                                    <Label resid="ReadButtonLabel" />
+                                    <Tooltip resid="ReadButtonTooltip" />
+                                    <Supertip>
+                                        <Title resid="ReadSupertip" />
+                                        <Description resid="ReadSupertipDescription" />
+                                    </Supertip>
+                                    <Icon>
+                                        <bt:Image size="16" resid="tp16icon" />
+                                        <bt:Image size="32" resid="tp32icon" />
+                                        <bt:Image size="80" resid="tp80icon" />
+                                    </Icon>
+                                    <Action xsi:type="ShowTaskpane">
+                                        <SourceLocation resid="TaskpaneUrl" />
+                                    </Action>
+                                </Control>
+                            </Group>
+                        </OfficeTab>
+                    </ExtensionPoint>
+                    <ExtensionPoint xsi:type="MessageComposeCommandSurface">
+                        <OfficeTab id="TabDefault">
+                            <Group id="GroupComposeMailTab">
+                                <Label resid="ComposeGroupLabel" />
+                                <Tooltip resid="ComposeGroupTooltip" />
+                                <Control xsi:type="Button" id="TaskPaneButtonCompose">
+                                    <Label resid="ComposeButtonLabel" />
+                                    <Tooltip resid="ComposeButtonTooltip" />
+                                    <Supertip>
+                                        <Title resid="ComposeSupertip" />
+                                        <Description resid="ComposeSupertipDescription" />
+                                    </Supertip>
+                                    <Icon>
+                                        <bt:Image size="16" resid="tp16icon" />
+                                        <bt:Image size="32" resid="tp32icon" />
+                                        <bt:Image size="80" resid="tp80icon" />
+                                    </Icon>
+                                    <Action xsi:type="ShowTaskpane">
+                                        <SourceLocation resid="TaskpaneUrl" />
+                                    </Action>
+                                </Control>
+                            </Group>
+                        </OfficeTab>
+                    </ExtensionPoint>
+                    <ExtensionPoint xsi:type="AppointmentAttendeeCommandSurface">
+                        <OfficeTab id="TabDefault">
+                            <Group id="GroupAttendeeTab">
+                                <Label resid="ReadGroupLabel" />
+                                <Tooltip resid="ReadGroupTooltip" />
+                                <Control xsi:type="Button" id="TaskPaneButtonAttendee">
+                                    <Label resid="ReadButtonLabel" />
+                                    <Tooltip resid="ReadButtonTooltip" />
+                                    <Supertip>
+                                        <Title resid="ReadSupertip" />
+                                        <Description resid="ReadSupertipDescription" />
+                                    </Supertip>
+                                    <Icon>
+                                        <bt:Image size="16" resid="tp16icon" />
+                                        <bt:Image size="32" resid="tp32icon" />
+                                        <bt:Image size="80" resid="tp80icon" />
+                                    </Icon>
+                                    <Action xsi:type="ShowTaskpane">
+                                        <SourceLocation resid="TaskpaneUrl" />
+                                    </Action>
+                                </Control>
+                            </Group>
+                        </OfficeTab>
+                    </ExtensionPoint>
+                    <ExtensionPoint xsi:type="AppointmentOrganizerCommandSurface">
+                        <OfficeTab id="TabDefault">
+                            <Group id="GroupOrganizerTab">
+                                <Label resid="ComposeGroupLabel" />
+                                <Tooltip resid="ComposeGroupTooltip" />
+                                <Control xsi:type="Button" id="TaskPaneButtonOrganizer">
+                                    <Label resid="ComposeButtonLabel" />
+                                    <Tooltip resid="ComposeButtonTooltip" />
+                                    <Supertip>
+                                        <Title resid="ComposeSupertip" />
+                                        <Description resid="ComposeSupertipDescription" />
+                                    </Supertip>
+                                    <Icon>
+                                        <bt:Image size="16" resid="tp16icon" />
+                                        <bt:Image size="32" resid="tp32icon" />
+                                        <bt:Image size="80" resid="tp80icon" />
+                                    </Icon>
+                                    <Action xsi:type="ShowTaskpane">
+                                        <SourceLocation resid="TaskpaneUrl" />
+                                    </Action>
+                                </Control>
+                            </Group>
+                        </OfficeTab>
+                    </ExtensionPoint>
+                </DesktopFormFactor>
+            </Host>
+        </Hosts>
+        <Resources>
+            <bt:Images>
+                <bt:Image id="tp16icon" DefaultValue="https://sureshgowthams.github.io/outlook-web-addin/icon16.png" />
+                <bt:Image id="tp32icon" DefaultValue="https://sureshgowthams.github.io/outlook-web-addin/icon32.png" />
+                <bt:Image id="tp80icon" DefaultValue="https://sureshgowthams.github.io/outlook-web-addin/icon80.png" />
+            </bt:Images>
+            <bt:Urls>
+                <bt:Url id="TaskpaneUrl" DefaultValue="https://sureshgowthams.github.io/outlook-web-addin/index.html" />
+            </bt:Urls>
+            <bt:ShortStrings>
+                <bt:String id="ReadGroupLabel" DefaultValue="Read group" />
+                <bt:String id="ComposeGroupLabel" DefaultValue="Compose group" />
+                <bt:String id="ReadButtonLabel" DefaultValue="Read tutorial" />
+                <bt:String id="ComposeButtonLabel" DefaultValue="Compose tutorial" />
+                <bt:String id="ReadGroupTooltip" DefaultValue="Read API tutorial group tool tip" />
+                <bt:String id="ComposeGroupTooltip" DefaultValue="Compose API tutorial group tool tip" />
+                <bt:String id="ReadButtonTooltip" DefaultValue="Read API tutorial tool tip" />
+                <bt:String id="ComposeButtonTooltip" DefaultValue="Compose API tutorial tool tip" />
+                <bt:String id="ReadSupertip" DefaultValue="Read super tip" />
+                <bt:String id="ComposeSupertip" DefaultValue="Compose super tip" />
+            </bt:ShortStrings>
+            <bt:LongStrings>
+                <bt:String id="AppDescription" DefaultValue="API tutorial app description" />
+                <bt:String id="ReadSupertipDescription" DefaultValue="Read super tip description" />
+                <bt:String id="ComposeSupertipDescription" DefaultValue="Compose super tip description" />
+            </bt:LongStrings>
+        </Resources>
+        <VersionOverrides xmlns="http://schemas.microsoft.com/office/mailappversionoverrides/1.1" xsi:type="VersionOverridesV1_1">
+        <Description resid="AppDescription" />
+        <Requirements>
+            <bt:Sets DefaultMinVersion="1.3">
+                <bt:Set Name="Mailbox" />
+            </bt:Sets>
+        </Requirements>
+        <Hosts>
+            <Host xsi:type="MailHost">
+                <DesktopFormFactor>
+                    <ExtensionPoint xsi:type="MessageReadCommandSurface">
+                        <OfficeTab id="TabDefault">
+                            <Group id="GroupReadMailTab">
+                                <Label resid="ReadGroupLabel" />
+                                <Tooltip resid="ReadGroupTooltip" />
+                                <Control xsi:type="Button" id="TaskPaneButtonRead">
+                                    <Label resid="ReadButtonLabel" />
+                                    <Tooltip resid="ReadButtonTooltip" />
+                                    <Supertip>
+                                        <Title resid="ReadSupertip" />
+                                        <Description resid="ReadSupertipDescription" />
+                                    </Supertip>
+                                    <Icon>
+                                        <bt:Image size="16" resid="tp16icon" />
+                                        <bt:Image size="32" resid="tp32icon" />
+                                        <bt:Image size="80" resid="tp80icon" />
+                                    </Icon>
+                                    <Action xsi:type="ShowTaskpane">
+                                        <SourceLocation resid="TaskpaneUrl" />
+										<SupportsPinning>true</SupportsPinning>
+                                    </Action>
+                                </Control>
+                            </Group>
+                        </OfficeTab>
+                    </ExtensionPoint>
+                    <ExtensionPoint xsi:type="MessageComposeCommandSurface">
+                        <OfficeTab id="TabDefault">
+                            <Group id="GroupComposeMailTab">
+                                <Label resid="ComposeGroupLabel" />
+                                <Tooltip resid="ComposeGroupTooltip" />
+                                <Control xsi:type="Button" id="TaskPaneButtonCompose">
+                                    <Label resid="ComposeButtonLabel" />
+                                    <Tooltip resid="ComposeButtonTooltip" />
+                                    <Supertip>
+                                        <Title resid="ComposeSupertip" />
+                                        <Description resid="ComposeSupertipDescription" />
+                                    </Supertip>
+                                    <Icon>
+                                        <bt:Image size="16" resid="tp16icon" />
+                                        <bt:Image size="32" resid="tp32icon" />
+                                        <bt:Image size="80" resid="tp80icon" />
+                                    </Icon>
+                                    <Action xsi:type="ShowTaskpane">
+                                        <SourceLocation resid="TaskpaneUrl" />
+										<SupportsPinning>true</SupportsPinning>
+                                    </Action>
+                                </Control>
+                            </Group>
+                        </OfficeTab>
+                    </ExtensionPoint>
+                    <ExtensionPoint xsi:type="AppointmentAttendeeCommandSurface">
+                        <OfficeTab id="TabDefault">
+                            <Group id="GroupAttendeeTab">
+                                <Label resid="ReadGroupLabel" />
+                                <Tooltip resid="ReadGroupTooltip" />
+                                <Control xsi:type="Button" id="TaskPaneButtonAttendee">
+                                    <Label resid="ReadButtonLabel" />
+                                    <Tooltip resid="ReadButtonTooltip" />
+                                    <Supertip>
+                                        <Title resid="ReadSupertip" />
+                                        <Description resid="ReadSupertipDescription" />
+                                    </Supertip>
+                                    <Icon>
+                                        <bt:Image size="16" resid="tp16icon" />
+                                        <bt:Image size="32" resid="tp32icon" />
+                                        <bt:Image size="80" resid="tp80icon" />
+                                    </Icon>
+                                    <Action xsi:type="ShowTaskpane">
+                                        <SourceLocation resid="TaskpaneUrl" />
+										<SupportsPinning>true</SupportsPinning>
+                                    </Action>
+                                </Control>
+                            </Group>
+                        </OfficeTab>
+                    </ExtensionPoint>
+                    <ExtensionPoint xsi:type="AppointmentOrganizerCommandSurface">
+                        <OfficeTab id="TabDefault">
+                            <Group id="GroupOrganizerTab">
+                                <Label resid="ComposeGroupLabel" />
+                                <Tooltip resid="ComposeGroupTooltip" />
+                                <Control xsi:type="Button" id="TaskPaneButtonOrganizer">
+                                    <Label resid="ComposeButtonLabel" />
+                                    <Tooltip resid="ComposeButtonTooltip" />
+                                    <Supertip>
+                                        <Title resid="ComposeSupertip" />
+                                        <Description resid="ComposeSupertipDescription" />
+                                    </Supertip>
+                                    <Icon>
+                                        <bt:Image size="16" resid="tp16icon" />
+                                        <bt:Image size="32" resid="tp32icon" />
+                                        <bt:Image size="80" resid="tp80icon" />
+                                    </Icon>
+                                    <Action xsi:type="ShowTaskpane">
+                                        <SourceLocation resid="TaskpaneUrl" />
+										<SupportsPinning>true</SupportsPinning>
+                                    </Action>
+                                </Control>
+                            </Group>
+                        </OfficeTab>
+                    </ExtensionPoint>
+                </DesktopFormFactor>
+            </Host>
+        </Hosts>
+        <Resources>
+            <bt:Images>
+                <bt:Image id="tp16icon" DefaultValue="https://sureshgowthams.github.io/outlook-web-addin/icon16.png" />
+                <bt:Image id="tp32icon" DefaultValue="https://sureshgowthams.github.io/outlook-web-addin/icon32.png" />
+                <bt:Image id="tp80icon" DefaultValue="https://sureshgowthams.github.io/outlook-web-addin/icon80.png" />
+            </bt:Images>
+            <bt:Urls>
+                <bt:Url id="TaskpaneUrl" DefaultValue="https://sureshgowthams.github.io/outlook-web-addin/index.html" />
+            </bt:Urls>
+            <bt:ShortStrings>
+                <bt:String id="ReadGroupLabel" DefaultValue="Read group" />
+                <bt:String id="ComposeGroupLabel" DefaultValue="Compose group" />
+                <bt:String id="ReadButtonLabel" DefaultValue="Read tutorial" />
+                <bt:String id="ComposeButtonLabel" DefaultValue="Compose tutorial" />
+                <bt:String id="ReadGroupTooltip" DefaultValue="Read API tutorial group tool tip" />
+                <bt:String id="ComposeGroupTooltip" DefaultValue="Compose API tutorial group tool tip" />
+                <bt:String id="ReadButtonTooltip" DefaultValue="Read API tutorial tool tip" />
+                <bt:String id="ComposeButtonTooltip" DefaultValue="Compose API tutorial tool tip" />
+                <bt:String id="ReadSupertip" DefaultValue="Read super tip" />
+                <bt:String id="ComposeSupertip" DefaultValue="Compose super tip" />
+            </bt:ShortStrings>
+            <bt:LongStrings>
+                <bt:String id="AppDescription" DefaultValue="API tutorial app description" />
+                <bt:String id="ReadSupertipDescription" DefaultValue="Read super tip description" />
+                <bt:String id="ComposeSupertipDescription" DefaultValue="Compose super tip description" />
+            </bt:LongStrings>
+        </Resources>
+    </VersionOverrides>
+    </VersionOverrides>
+</OfficeApp>
