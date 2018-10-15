@@ -1,0 +1,72 @@
+{
+    "Office.context": {
+        "displayLanguage":"console.log(Office.context.displayLanguage);",
+        "setRoamingSetting":"Office.context.roamingSettings.set('myKey', 'Hello World!');\nOffice.context.roamingSettings.saveAsync(\n\tfunction (asyncResult) {\n\t\tconsole.log(JSON.stringify(asyncResult));\n\t}\n);",
+        "getRoamingSetting":"console.log(Office.context.roamingSettings.get('myKey'));",
+        "removeRoamingSetting":"Office.context.roamingSettings.remove('myKey');\nOffice.context.roamingSettings.saveAsync(\n\tfunction (asyncResult) {\n\t\tconsole.log(JSON.stringify(asyncResult));\n\t}\n);"
+    },
+
+    "Ofice.context.mailbox": {
+        "convertToRestId":"var ewsId = Office.context.mailbox.item.itemId;\nvar restId = Office.context.mailbox.convertToRestId(ewsId, Office.MailboxEnums.RestVersion.v2_0);\nconsole.log(restId);",
+        "convertToEwsId":"var restId = 'AAMkAGY4NTY1NDE4LTYwY2UtNGFkMi1iYWM0LTFjNWNlZTRiYzJiZgBGAAAAAADoWq5beaIQS5H0b244q4teBwBBlpJMXmrvRZroKP1QMFD7AAWOIICDAAAyMljtOF9eSIpjBvMLrE1RAADk489TAAA=';\nvar ewsId = Office.context.mailbox.convertToEwsId(restId, Office.MailboxEnums.RestVersion.v2_0);\nconsole.log(ewsId);",
+        "convertToLocalClientTime":"console.log(JSON.stringify(Office.context.mailbox.convertToLocalClientTime(new Date())));",
+        "convertToUtcClientTime":"var localTime = Office.context.mailbox.convertToLocalClientTime(new Date());\nvar utcClientTime = Office.context.mailbox.convertToUtcClientTime(localTime);\nconsole.log(utcClientTime);",
+        "displayAppointmentForm":"Office.context.mailbox.displayAppointmentForm(Office.context.mailbox.item.itemId);",
+        "displayMessageForm":"Office.context.mailbox.displayMessageForm(Office.context.mailbox.item.itemId);",
+        "displayNewAppointmentForm":"var start = new Date();\nvar end = new Date();\nend.setHours(start.getHours() + 1);\n\nOffice.context.mailbox.displayNewAppointmentForm( {\n\t\trequiredAttendees: ['bob@contoso.com'],\n\t\toptionalAttendees: ['sam@contoso.com'],\n\t\tstart: start,\n\t\tend: end,\n\t\tlocation: 'Home',\n\t\tresources: ['projector@contoso.com'],\n\t\tsubject: 'meeting',\n\t\tbody: 'Hello World!'\n\t}\n);",
+        "ewsUrl":"console.log(Office.context.mailbox.ewsUrl);",
+        "getCallbackTokenAsync":"Office.context.mailbox.getCallbackTokenAsync(\n\t{\n\t\tisRest: true\n\t},\n\tfunction (asyncResult) {\n\t\tconsole.log(JSON.stringify(asyncResult));\n\t}\n);",
+        "getUserIdentityTokenAsync":"Office.context.mailbox.getUserIdentityTokenAsync(\n\tfunction (asyncResult) {\n\t\tconsole.log(JSON.stringify(asyncResult));\n\t}\n);",
+        "makeEwsRequestAsync":"var request = '<soap:Envelope xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:m=\"http://schemas.microsoft.com/exchange/services/2006/messages\"'+\n' xmlns:t=\"http://schemas.microsoft.com/exchange/services/2006/types\" xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">'+\n'  <soap:Header><t:RequestServerVersion Version=\"Exchange2010\" /></soap:Header>'+\n'  <soap:Body>'+\n'    <m:CreateItem MessageDisposition=\"SendAndSaveCopy\">'+\n'      <m:SavedItemFolderId><t:DistinguishedFolderId Id=\"sentitems\" /></m:SavedItemFolderId>'+\n'      <m:Items>'+\n'        <t:Message>'+\n'          <t:Subject>Hello, Outlook!</t:Subject>'+\n'          <t:Body BodyType=\"HTML\">I sent this message to myself using the Outlook API!</t:Body>'+\n'          <t:ToRecipients>'+\n'            <t:Mailbox><t:EmailAddress>' +\n                Office.context.mailbox.userProfile.emailAddress +\n'            </t:EmailAddress></t:Mailbox>'+\n'          </t:ToRecipients>'+\n'        </t:Message>'+\n'      </m:Items>'+\n'    </m:CreateItem>'+\n'  </soap:Body>'+\n'</soap:Envelope>';\n\nOffice.context.mailbox.makeEwsRequestAsync(\n\trequest,\n\tfunction (asyncResult) {\n\t\tconsole.log(JSON.stringify(asyncResult));\n\t}\n);",
+        "restUrl":"console.log(Office.context.mailbox.restUrl);"
+    },
+
+    "Office.context.mailbox.diagnotics": {
+        "hostName":"console.log(Office.context.mailbox.diagnostics.hostName);",
+        "hostVersion":"console.log(Office.context.mailbox.diagnostics.hostVersion);"
+    },
+
+    "Office.context.mailbox.item": {
+        "attachments":"console.log(JSON.stringify(Office.context.mailbox.item.attachments));",
+        "bodyGetAsync":"Office.context.mailbox.item.body.getAsync(\n\t'text',\n\tfunction (asyncResult) {\n\t\tconsole.log(JSON.stringify(asyncResult));\n\t}\n);",
+        "cc":"var recipients = '';\nOffice.context.mailbox.item.cc.forEach(function (recipient, index) {\n\trecipients = JSON.stringify(recipient);\n});\nconsole.log(recipients);",
+        "conversationId":"console.log(Office.context.mailbox.item.conversationId);",
+        "customPropertiesGetAsync": "Office.context.mailbox.item.loadCustomPropertiesAsync(\n\tfunction customPropsCallback(asyncResult) {\n\t\tif (asyncResult.status == Office.AsyncResultStatus.Failed) {\n\t\t\tconsole.log(JSON.stringify(asyncResult));\n\t\t} else {\n\t\t\tvar customProps = asyncResult.value;\n\t\t\tconsole.log(customProps.get('myProp'));\n\t\t}\n\t}\n);",
+        "customPropertiesRemoveAsync":"Office.context.mailbox.item.loadCustomPropertiesAsync(\n\tfunction customPropsCallback(asyncResult) {\n\t\tif (asyncResult.status == Office.AsyncResultStatus.Failed) {\n\t\t\tconsole.log(JSON.stringify(asyncResult));\n\t\t} else {\n\t\t\tvar customProps = asyncResult.value;\n\t\t\tcustomProps.remove('myProp');\n\t\t\tcustomProps.saveAsync(\n\t\t\t\tfunction (asyncResult) {\n\t\t\t\t\tconsole.log(JSON.stringify(asyncResult));\n\t\t\t\t}\n\t\t\t);\n\t\t}\n\t}\n);",
+        "customPropertiesSetAsync":"Office.context.mailbox.item.loadCustomPropertiesAsync(\n\tfunction customPropsCallback(asyncResult) {\n\t\tif (asyncResult.status == Office.AsyncResultStatus.Failed) {\n\t\t\tconsole.log(JSON.stringify(asyncResult));\n\t\t} else {\n\t\t\tvar customProps = asyncResult.value;\n\t\t\tcustomProps.set('myProp', 'value');\n\t\t\tcustomProps.saveAsync(\n\t\t\t\tfunction (asyncResult) {\n\t\t\t\t\tconsole.log(JSON.stringify(asyncResult));\n\t\t\t\t}\n\t\t\t);\n\t\t}\n\t}\n);",
+        "dateTimeCreated":"console.log(Office.context.mailbox.item.dateTimeCreated);",
+        "dateTimeModified":"console.log(Office.context.mailbox.item.dateTimeModified);",
+        "displayReplyAllForm":"Office.context.mailbox.item.displayReplyAllForm(\n\t{\n\t\t'htmlBody' : 'hi',\n\t\t'attachments' : [{\n\t\t\t\t'type' : Office.MailboxEnums.AttachmentType.File,\n\t\t\t\t'name' : 'squirrel.png',\n\t\t\t\t'url' : 'http://i.imgur.com/sRgTlGR.jpg'\n\t\t\t}, {\n\t\t\t\t'type' : Office.MailboxEnums.AttachmentType.Item,\n\t\t\t\t'name' : 'mymail',\n\t\t\t\t'itemId' : Office.context.mailbox.item.itemId\n\t\t\t}\n\t\t]\n\t}\n);",
+        "displayReplyForm":"Office.context.mailbox.item.displayReplyForm(\n\t{\n\t\t'htmlBody' : 'hi<img src = \"cid:squirrel.png\">',\n\t\t'attachments' : [{\n\t\t\t\t'type' : Office.MailboxEnums.AttachmentType.File,\n\t\t\t\t'name' : 'squirrel.png',\n\t\t\t\t'isInline' : 'true',\n\t\t\t\t'url' : 'http://i.imgur.com/sRgTlGR.jpg'\n\t\t\t}, {\n\t\t\t\t'type' : Office.MailboxEnums.AttachmentType.Item,\n\t\t\t\t'name' : 'mymail',\n\t\t\t\t'itemId' : Office.context.mailbox.item.itemId\n\t\t\t}\n\t\t]\n\t}\n);",
+        "from":"console.log(JSON.stringify(Office.context.mailbox.item.from));",
+        "getEntities":"console.log(JSON.stringify(Office.context.mailbox.item.getEntities());",
+        "getEntitiesByType":"console.log(JSON.stringify(Office.context.mailbox.item.getEntitiesByType(Office.MailboxEnums.EntityType.URL)));",
+        "getFilteredEntitiesByName":"console.log(JSON.stringify(Office.context.mailbox.item.getFilteredEntitiesByName('youtube')));",
+        "getRegExMatches":"console.log(JSON.stringify(Office.context.mailbox.item.getRegExMatches()));",
+        "getRegExMatchesByName":"console.log(JSON.stringify(Office.context.mailbox.item.getRegExMatchesByName('fruits')));",
+        "getSharedPropertiesAsync":"Office.context.mailbox.item.getSharedPropertiesAsync(function(asyncResult) { console.log(JSON.stringify(asyncResult));});",
+        "internetMessageId":"console.log(Office.context.mailbox.item.internetMessageId);",
+        "itemClass":"console.log(Office.context.mailbox.item.itemClass);",
+        "itemId":"console.log(Office.context.mailbox.item.itemId);",
+        "itemType":"console.log(Office.context.mailbox.item.itemType);",
+        "normalizedSubject":"console.log(Office.context.mailbox.item.normalizedSubject);",
+        "notificationMessagesAddAsync":"Office.context.mailbox.item.notificationMessages.addAsync(\n\t'foo',\n\t{\n\t\ttype: 'progressIndicator',\n\t\tmessage: 'this operation is in progress',\n\t},\n\tfunction (asyncResult) {\n\t\tconsole.log(JSON.stringify(asyncResult));\n\t}\n);",
+        "notificationMessagesGetAsync":"Office.context.mailbox.item.notificationMessages.getAllAsync(\n\tfunction (asyncResult) {\n\t\tconsole.log(JSON.stringify(asyncResult));\n\t}\n);",
+        "notificationMessagesRemoveAsync":"Office.context.mailbox.item.notificationMessages.removeAsync(\n\t'foo',\n\tfunction (asyncResult) {\n\t\tconsole.log(JSON.stringify(asyncResult));\n\t}\n);",
+        "notificationMessagesReplaceAsync":"Office.context.mailbox.item.notificationMessages.replaceAsync(\n\t'foo',\n\t{\n\t\ttype: 'informationalMessage',\n\t\tmessage: 'this operation is complete',\n\t},\n\tfunction (asyncResult) {\n\t\tconsole.log(JSON.stringify(asyncResult));\n\t}\n);",
+        "sender":"console.log(JSON.stringify(Office.context.mailbox.item.sender));",
+        "subject":"console.log(JSON.stringify(Office.context.mailbox.item.subject));",
+        "to":"var recipients = '';\nOffice.context.mailbox.item.to.forEach(function (recipient, index) {\n\trecipients = JSON.stringify(recipient);\n});\nconsole.log(recipients);"
+    },
+
+    "Office.context.mailbox.userProfile": {
+        "displayName":"console.log(Office.context.mailbox.userProfile.displayName);",
+        "emailAddress":"console.log(Office.context.mailbox.userProfile.emailAddress);",
+        "timeZone":"console.log(Office.context.mailbox.userProfile.timeZone);"
+    },
+
+    "Office.context.ui": {
+        "closeContainer":"Office.context.ui.closeContainer();",
+        "displayDialog":"var dialogOptions = { height:80, width:50, displayInIframe: false, requireHTTPS: false };\nOffice.context.ui.displayDialogAsync(\n\t'https://susikkan.azurewebsites.net/tutorial/index.html', \n\tdialogOptions, \n\tfunction (asyncResult) {\n\t\tconsole.log(JSON.stringify(asyncResult));\n\t}\n);"
+    }
+}
